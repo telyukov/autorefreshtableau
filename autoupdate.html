@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>example</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="http://public.tableau.com/javascripts/api/tableau_v8.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+      var viz;
+      function refreshThatSucker(){
+        viz.refreshDataAsync();
+      };
+
+      function initializeViz(){
+        var placeholderDiv = document.getElementById("content");
+        // Replace this URL with your viz
+        var url = "http://tableau/views/-_0/-";
+        var options = {
+          hideTabs: true,
+          hideToolbar: true,
+          onFirstInteractive: function () {
+            // Refresh the viz every 5000 milliseconds
+            window.setInterval("refreshThatSucker()",5000);
+          }
+        };
+
+        try {
+          viz = new tableau.Viz(placeholderDiv, url, options);
+        }
+        catch(e){
+          alert(e);
+        }
+      };
+    </script>
+    <script type="text/javascript">
+      // Initialize the app on document ready.
+      $(initializeViz);  
+    </script>
+  </body>
+</html>
