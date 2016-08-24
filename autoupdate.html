@@ -7,20 +7,24 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
       var viz;
-      function refreshThatSucker(){
+      function refresh(){
         viz.refreshDataAsync();
       };
 
       function initializeViz(){
-        var placeholderDiv = document.getElementById("content");
+        //--- conf ---//
         // Replace this URL with your viz
         var url = "http://tableau/views/-_0/-";
+	// Set interval in millisecods
+	var interval = 5000;
+
+	var placeholderDiv = document.getElementById("content");
         var options = {
           hideTabs: true,
           hideToolbar: true,
           onFirstInteractive: function () {
             // Refresh the viz every 5000 milliseconds
-            window.setInterval("refreshThatSucker()",5000);
+            window.setInterval("refresh()",interval);
           }
         };
 
